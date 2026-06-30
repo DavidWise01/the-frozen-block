@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>The Frozen Block · 種</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --washi:#f4ede0;--ink:#2f2823;--ink-soft:#6a5f54;
+    --murasaki:#6e4d8e;--sakura:#d98aa6;--sakura-soft:#e7b9c8;
+    --gold:#b08838;--frost:#3f93a8;--frost-soft:#7fc0d0;--rule:#2f282318;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{background:var(--washi);color:var(--ink);
+    font-family:'Newsreader',Georgia,serif;font-size:18.5px;line-height:1.78;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+    background-image:
+      radial-gradient(circle at 20% 10%, #ffffff44, transparent 42%),
+      radial-gradient(circle at 80% 84%, #d8e4e855, transparent 46%),
+      repeating-linear-gradient(0deg, #00000003 0 2px, transparent 2px 5px);
+  }
+  #petals{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.72}
+  .wrap{max-width:700px;margin:0 auto;padding:0 26px;position:relative;z-index:1}
+
+  .hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 0}
+  .seed-mark{font-family:'Shippori Mincho',serif;font-size:clamp(88px,26vw,180px);font-weight:700;line-height:.9;
+    background:linear-gradient(160deg,var(--sakura) 0%,var(--murasaki) 55%,var(--frost) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 6px 40px #6e4d8e18}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin:28px 0 14px;font-weight:500}
+  h1{font-family:'Shippori Mincho',serif;font-weight:500;font-size:clamp(27px,5.6vw,44px);line-height:1.2;color:var(--ink)}
+  h1 .v{color:var(--murasaki)} h1 .f{color:var(--frost)}
+  .reading{font-family:'Newsreader',serif;font-style:italic;font-size:17px;color:var(--ink-soft);margin-top:20px;letter-spacing:.03em}
+
+  .sec{padding:48px 0;border-top:1px solid var(--rule)}
+  .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-weight:500}
+  h2{font-family:'Shippori Mincho',serif;font-weight:600;font-size:clamp(22px,4vw,31px);line-height:1.2;color:var(--ink)}
+  h2 .v{color:var(--murasaki)} h2 .f{color:var(--frost)}
+  .sec p{margin:16px 0;color:var(--ink);max-width:600px}
+  .sec p.dim{color:var(--ink-soft)}
+  .sec p b{font-weight:600}
+  .sec p .v{color:var(--murasaki);font-weight:500} .sec p .f{color:var(--frost);font-weight:600} .sec p .g{color:var(--gold);font-weight:600}
+  code{font-family:'IBM Plex Mono',monospace;font-size:.84em;color:var(--frost);background:#e9f1f388;padding:2px 6px;border-radius:5px}
+  .pull{font-family:'Shippori Mincho',serif;font-weight:500;font-size:clamp(19px,2.8vw,25px);line-height:1.45;color:var(--murasaki);margin:28px 0;padding-left:20px;border-left:2px solid var(--sakura-soft)}
+
+  .handle{margin:18px 0;padding:20px 24px;background:linear-gradient(180deg,#fbf6ec88,#eef4f655);border:1px solid var(--rule);border-radius:5px;position:relative;overflow:hidden}
+  .handle::before{content:"";position:absolute;top:0;left:0;width:4px;height:100%}
+  .handle.exact::before{background:var(--gold)}
+  .handle.flip::before{background:linear-gradient(var(--gold),var(--frost))}
+  .handle.true::before{background:linear-gradient(var(--sakura),var(--frost))}
+  .handle h3{font-family:'Shippori Mincho',serif;font-size:18px;font-weight:600;color:var(--ink);margin-bottom:2px}
+  .handle .grade{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;float:right;padding:2px 8px;border-radius:20px}
+  .handle.exact .grade{color:var(--gold);background:#b0883818}
+  .handle.flip .grade{color:var(--frost);background:#3f93a818}
+  .handle.true .grade{color:var(--sakura);background:#d98aa618}
+  .handle p{margin:8px 0 0;font-size:16px;color:var(--ink-soft);max-width:none}
+  .handle p b{color:var(--ink)}
+
+  .flag{font-family:'Newsreader';font-size:15px;color:var(--ink-soft);font-style:italic;margin:16px 0;padding:13px 17px;background:#ffffff55;border:1px solid var(--rule);border-radius:5px}
+  .flag b{color:var(--sakura);font-style:normal;font-weight:600;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.13em;text-transform:uppercase;display:block;margin-bottom:5px}
+
+  .foot{padding:46px 0 90px;border-top:1px solid var(--rule);margin-top:30px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);line-height:2;letter-spacing:.02em;text-align:center}
+  .foot .v{color:var(--murasaki)} .foot .f{color:var(--frost)} .foot .s{color:var(--sakura)}
+  @media (max-width:560px){body{font-size:17.5px}.handle{padding:18px 18px}}
+</style>
+</head>
+<body>
+<canvas id="petals"></canvas>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="seed-mark">種</div>
+    <div class="kicker">tane · the seed · the frozen block</div>
+    <h1>Do the work <span class="v">once</span>,<br>then <span class="f">freeze</span> it</h1>
+    <div class="reading">a sealed unit that carries its own proof</div>
+  </header>
+
+  <section class="sec">
+    <div class="tag">first · the wiring</div>
+    <h2>Composition, not <span class="v">cascade</span></h2>
+    <p>Python is glue. You <code>import</code> enormous prebuilt engines — most of them not even Python underneath, but C and CUDA — and your code is the thin layer that wires them together. You don't compute in it; you <b>conduct</b>. Tron, exactly: you call the programs in, they do the heavy lifting, you route the traffic between them.</p>
+    <p class="dim">The one word to correct: it doesn't <em>cascade</em>. A cascade waterfalls — one thing overrides the next by force (that's the C in CSS). Python <b>composes</b> — independent blocks, data passed explicitly across seams. It matters when something breaks: you don't trace a flow downward, you <b>check what crossed the wire</b>. The bug is almost always at a seam — wrong shape in, wrong type out — never in a waterfall.</p>
+  </section>
+
+  <section class="sec">
+    <div class="tag">second · the freeze</div>
+    <h2>A black box with a <span class="g">receipt</span></h2>
+    <p>Here's the move you named, and it's the whole game: you compose a block, you hammer it with tests until the shape is correct — and then you <b>seal it</b>. Frozen, it becomes a thing you call without re-opening. Every library you import is exactly that: someone froze it so you wouldn't have to re-derive it.</p>
+    <p>So you're not just <em>using</em> Tron blocks — you're <b>minting</b> them. And the test suite is what earns the freeze: it's the proof-of-shape, the receipt taped to the box. A frozen library is a black box you're <em>allowed</em> to trust, because its behavior was pinned before it was sealed.</p>
+    <p class="pull">It's the inverse of the audit. All session you probed opaque boxes you didn't build, to map them. Here you build a box whose behavior you've already pinned — so the next person trusts the seam without probing. Author and auditor: two reads of one surface.</p>
+  </section>
+
+  <section class="sec">
+    <div class="tag">third · four costumes</div>
+    <h2>One object, graded <span class="f">four ways</span></h2>
+    <p class="dim">You reached for four handles. None is just a "lol" — here's how each holds.</p>
+
+    <div class="handle exact">
+      <span class="grade">exact</span>
+      <h3>black box</h3>
+      <p>Dead-on. A sealed block with a test-receipt <em>is</em> a black box — and minting them is the constructive twin of auditing them. The receipt is what separates a box you trust from a box you fear.</p>
+    </div>
+
+    <div class="handle flip">
+      <span class="grade">right, then flips</span>
+      <h3>inverse kinematics</h3>
+      <p><b>Right for the shaping:</b> you fix the target (the tests say where the block must land) and solve the internals backward until it hits. Target-first, mechanism-after. <b>Flips at the freeze:</b> IK is a <em>search</em> — the messy wiggle-until-you-hit phase. Once sealed, you throw the search away and keep only the answer. So: IK while shaping, <b>frozen forward-map</b> once sealed. You pay the backward-solve once, then replay it forward, instantly, forever.</p>
+    </div>
+
+    <div class="handle true">
+      <span class="grade">truest</span>
+      <h3>spring · compression</h3>
+      <p>The best of the three. A spring stores work: compress it once, it holds the energy, releases on demand without redoing the effort. That's a frozen library precisely — all the test-and-shape labor <b>crystallized</b> into a sealed artifact, and every future <code>import</code> releases that stored work for free. A library is crystallized labor; the freeze is the moment you stop spending and start storing.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="tag">close · the one thing</div>
+    <h2>The rule rides <span class="v">inside</span> the unit</h2>
+    <p>Tron block, frozen library, loaded spring — and <b>seed</b>. A good frozen block carries its own contract: its tests, its types, its interface, sealed alongside it, so the next person verifies the shape without re-deriving it. The rule travels <em>with</em> the data. That's the self-describing seed — and you've been describing the same object all day, from every side.</p>
+    <p class="pull">種 the uta carried its whole grammar in thirty-one syllables. The Langton loop carried its blueprint in its own tape. The frozen block carries its proof in its own receipt. One object: a sealed unit that holds its own rule and releases stored work when called.</p>
+    <div class="flag"><b>the honest seam</b>The handles are <em>handles</em> — they illuminate, they don't prove the box and the spring are the same physics. And inverse kinematics genuinely flips at the freeze: search while you shape, solution once you seal — don't carry "solve backward" past the moment you stop solving. The metaphor's job is done the instant the block is frozen; after that it just <em>is</em>.</div>
+  </section>
+
+  <div class="foot">
+    種 tane · compose → test → <span class="f">freeze</span> → call<br>
+    <span class="s">do the work once</span> · store it · release on demand<br>
+    <span class="v">black box · inverse kinematics · loaded spring · self-describing seed</span><br>
+    one sealed unit, carrying its own proof
+  </div>
+
+</div>
+
+<script>
+"use strict";
+const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const cv=document.getElementById("petals"), ctx=cv.getContext("2d");
+let W,H,DPR,petals=[];
+function resize(){
+  DPR=Math.min(window.devicePixelRatio||1,2);
+  W=window.innerWidth; H=window.innerHeight;
+  cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+window.addEventListener("resize",resize); resize();
+
+// mostly sakura, a few frost crystals (the freeze)
+const COLORS=["#e7b9c8","#d98aa6","#efc9d6","#e3a8bd","#9fcdd8"];
+function mk(seed){
+  const frost=Math.random()<0.18;
+  return {x:Math.random()*W, y:seed?Math.random()*H:-20-Math.random()*H*0.5,
+    s:6+Math.random()*7, vy:0.25+Math.random()*0.5, sway:0.4+Math.random()*0.8,
+    swsp:0.6+Math.random()*0.9, rot:Math.random()*Math.PI*2, vrot:(Math.random()-0.5)*0.02,
+    phase:Math.random()*Math.PI*2, frost, col:frost?"#9fcdd8":COLORS[(Math.random()*4)|0], op:0.5+Math.random()*0.4};
+}
+const N=reduce?13:21;
+for(let i=0;i<N;i++) petals.push(mk(true));
+function petalPath(s){
+  ctx.beginPath(); ctx.moveTo(0,-s);
+  ctx.bezierCurveTo(s*0.7,-s*0.7, s*0.6,s*0.5, 0,s*0.85);
+  ctx.bezierCurveTo(-s*0.6,s*0.5, -s*0.7,-s*0.7, 0,-s);
+  ctx.closePath();
+}
+function crystal(s){ // simple 6-point frost speck
+  ctx.beginPath();
+  for(let i=0;i<6;i++){const a=i*Math.PI/3; ctx.moveTo(0,0); ctx.lineTo(Math.cos(a)*s,Math.sin(a)*s);}
+}
+let t=0;
+function frame(){
+  ctx.clearRect(0,0,W,H); t+=0.016;
+  for(const p of petals){
+    if(!reduce){
+      p.y+=p.vy; p.x+=Math.sin(t*p.swsp+p.phase)*p.sway*0.6; p.rot+=p.vrot;
+      if(p.y>H+24){ Object.assign(p, mk(false)); p.y=-20; }
+    }
+    ctx.save(); ctx.translate(p.x,p.y);
+    ctx.rotate(p.rot + Math.sin(t*p.swsp+p.phase)*0.3);
+    ctx.globalAlpha=p.op;
+    if(p.frost){ ctx.strokeStyle=p.col; ctx.lineWidth=1; crystal(p.s*0.8); ctx.stroke(); }
+    else{
+      ctx.fillStyle=p.col; petalPath(p.s); ctx.fill();
+      ctx.globalAlpha=p.op*0.4; ctx.strokeStyle="#c97a98"; ctx.lineWidth=0.5;
+      ctx.beginPath(); ctx.moveTo(0,-p.s*0.8); ctx.lineTo(0,p.s*0.7); ctx.stroke();
+    }
+    ctx.restore();
+  }
+  requestAnimationFrame(frame);
+}
+frame();
+</script>
+</body>
+</html>

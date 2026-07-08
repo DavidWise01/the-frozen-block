@@ -1,0 +1,9 @@
+ROOT0-DLW-CHAIN-v1
+index : 166
+slug  : the-frozen-block
+seal  : 200865083b0e2a7f15b8e62221660bb94fd8ff2d410fea3f49b4a8aa51485351
+prev  : 33183544fe91482c8f93e6edfdbfb11112b732699ee0ebb6ec0acab65fb1a459
+link  : cc8feeecfcfa1dda7d537f2d6b4251d45b7a4620710d04d64af16973e2a5a0e3
+head  : 3447d3a0533aaf1e29a8bdc67a9774884fb3ae9dbc8a17064b7a008ca3c4ec90
+
+— the tether: link = sha256(index|slug|seal|prev). the chain head commits to the whole corpus.
